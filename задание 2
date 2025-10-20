@@ -1,0 +1,38 @@
+using System;
+namespace pel
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.Write("Введите строку: ");
+            string inputString = Console.ReadLine();
+            if (string.IsNullOrEmpty(inputString))
+            {
+                Console.WriteLine("Ошибка: строка пуста или null.");
+                return;
+            }
+            Console.Write("Введите минимальную длину: ");
+            string minLengthInput = Console.ReadLine();
+            if (!int.TryParse(minLengthInput, out int minLength) || minLength <= 0)
+            {
+                Console.WriteLine("Ошибка: введите корректное положительное число для минимальной длины.");
+                return;
+            }
+            bool isLongEnough = IsStringLongEnough(inputString, minLength);
+
+            if (isLongEnough)
+            {
+                Console.WriteLine($"Строка '{inputString}' достаточно длинная.");
+            }
+            else
+            {
+                Console.WriteLine($"Строка '{inputString}' слишком короткая.");
+            }
+        }
+        static bool IsStringLongEnough(string text, int minLength)
+        {
+            return text.Length >= minLength;
+        }
+    }
+}           
